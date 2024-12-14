@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import api from "@services/Api";
-
-interface IProps {
-  studentId: number;
-}
 
 interface IGrade {
   student_id: number;
@@ -12,9 +9,9 @@ interface IGrade {
   obtained: number;
 }
 
-export default function GradesHistory(props: IProps) {
-  const { studentId } = props;
+export default function GradesHistory() {
   const [gradesHistory, setGradeHistory] = useState<IGrade[]>([]);
+  const { studentId } = useParams();
 
   const fetchGrades = async () => {
     const response = await api.get(`/students/${studentId}/parcial_grades`);
@@ -24,7 +21,7 @@ export default function GradesHistory(props: IProps) {
 
   useEffect(() => {
     fetchGrades();
-  });
+  }, []);
 
   return (
     <table>

@@ -1,10 +1,12 @@
-import Students from "@/src/components/Students";
+import { BrowserRouter } from "react-router";
+
+import Router from "@src/Routes";
 
 function App() {
   return (
-    <>
-      <Students />
-    </>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
 
