@@ -1,13 +1,11 @@
-import Student from "./components/Student"
+import Student from "./components/Student";
 
 function App() {
-
-
   return (
     <>
-      <Student name="John"/>
+      <Student name="John" />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
