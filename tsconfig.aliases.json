@@ -5,6 +5,7 @@
       "@/*": ["*"],
       "@src/*": ["src/*"],
       "@components/*": ["src/components/*"],
+      "@services/*": ["src/services/*"],
       "@__tests__/*": ["__tests__/*"]
     }
   }

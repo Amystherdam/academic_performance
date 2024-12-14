@@ -1,9 +1,9 @@
-import Student from "./components/Student";
+import Students from "@/src/components/Students";
 
 function App() {
   return (
     <>
-      <Student name="John" />
+      <Students />
     </>
   );
 }
