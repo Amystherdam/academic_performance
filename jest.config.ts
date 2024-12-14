@@ -1,5 +1,5 @@
 import type { Config } from 'jest';
-import * as aliases from "./jsconfig.aliases.json"
+import * as aliases from "./tsconfig.aliases.json"
 
 const buildAliases = () => {
   const { paths, baseUrl } = aliases.compilerOptions;
