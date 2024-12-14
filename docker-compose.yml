@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    react:
+      build: .
+      container_name: react
+      volumes:
+        - .:/academic_performance
+        - /academic_performance/node_modules
+      ports:
+        - '3001:3001'
+      environment:
+        CHOKIDAR_USEPOLLING: "true"
