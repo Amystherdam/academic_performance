@@ -1,12 +1,9 @@
-
 interface IProps {
   name: string;
 }
 
 export default function Student(props: IProps): JSX.Element {
-  const {name} = props
+  const { name } = props;
 
-  return (
-    <p>{name}</p>
-  )
+  return <p>{name}</p>;
 }

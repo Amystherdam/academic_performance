@@ -1,0 +1,28 @@
+name: "CI"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: "*"
+
+jobs:
+  test-js:
+    runs-on: ubuntu-latest
+    name: 🔬 Running unit tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+          cache: "yarn"
+
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+
+      # - name: Test Unit
+      #   run: yarn testFinal
