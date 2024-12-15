@@ -30,24 +30,30 @@ export default function Students() {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <>
+        <p className="text-red-700">{error}</p>
+      </>
+    );
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <td>Student Name</td>
-          <td>Actions</td>
-        </tr>
-      </thead>
-      <tbody>
-        {students.map((student, index) => (
-          <tr key={index}>
-            <td>{student.name}</td>
+    <>
+      <table>
+        <thead>
+          <tr>
+            <td className="text-red-700">Student Name</td>
+            <td>Actions</td>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {students.map((student, index) => (
+            <tr key={index}>
+              <td>{student.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }
