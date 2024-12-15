@@ -7,6 +7,10 @@ export default function MainContainer() {
       label: "Students",
       path: "/students",
     },
+    {
+      label: "Ranking",
+      path: "/students/ranking",
+    },
   ];
 
   return (
