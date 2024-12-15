@@ -51,10 +51,10 @@ export default function Students() {
                 Student Name
               </th>
               <th scope="col" className="px-6 py-3 ">
-                Overall Student Grade
+                <div className="flex justify-center">Overall Student Grade</div>
               </th>
-              <th scope="col" className="px-6 py-3 flex justify-center">
-                Options
+              <th scope="col" className="px-6 py-3">
+                <div className="flex justify-center">Options</div>
               </th>
             </tr>
           </thead>
@@ -77,7 +77,7 @@ export default function Students() {
                   {student.obtained}
                 </td>
                 <td className="px-6 py-4">
-                  <div className="flex justify-between">
+                  <div className="flex justify-around">
                     <button
                       type="button"
                       onClick={() =>

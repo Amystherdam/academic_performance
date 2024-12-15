@@ -52,7 +52,7 @@ export default function Ranking() {
           onClick={() => {
             fetchRanking(1);
           }}
-          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3 cursor-pointer"
         >
           1
         </span>
@@ -60,7 +60,7 @@ export default function Ranking() {
           onClick={() => {
             fetchRanking(5);
           }}
-          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3 cursor-pointer"
         >
           5
         </span>
@@ -68,7 +68,7 @@ export default function Ranking() {
           onClick={() => {
             fetchRanking(10);
           }}
-          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3 cursor-pointer"
         >
           10
         </span>
@@ -76,7 +76,7 @@ export default function Ranking() {
           onClick={() => {
             fetchRanking(20);
           }}
-          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3 cursor-pointer"
         >
           20
         </span>
@@ -84,7 +84,7 @@ export default function Ranking() {
           onClick={() => {
             fetchRanking(50);
           }}
-          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3 cursor-pointer"
         >
           50
         </span>
