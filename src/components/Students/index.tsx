@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 interface IStudent {
   id: number;
   name: string;
+  obtained: number;
 }
 
 export default function Students() {
@@ -49,6 +50,9 @@ export default function Students() {
               <th scope="col" className="px-6 py-3">
                 Student Name
               </th>
+              <th scope="col" className="px-6 py-3 ">
+                Overall Student Grade
+              </th>
               <th scope="col" className="px-6 py-3 flex justify-center">
                 Options
               </th>
@@ -66,6 +70,12 @@ export default function Students() {
                 >
                   {student.name}
                 </th>
+                <td
+                  scope="row"
+                  className="px-6 py-4 flex justify-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {student.obtained}
+                </td>
                 <td className="px-6 py-4">
                   <div className="flex justify-between">
                     <button
@@ -87,13 +97,6 @@ export default function Students() {
                     >
                       <span className="mt-2">Médias por Disciplina</span>
                     </button>
-
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      Média Final
-                    </a>
                   </div>
                 </td>
               </tr>
