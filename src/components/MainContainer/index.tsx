@@ -14,7 +14,7 @@ export default function MainContainer() {
   ];
 
   return (
-    <div className="flex flex-col	 h-full">
+    <div className="flex flex-col h-full">
       <NavBar paths={navBarlinks} />
 
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">

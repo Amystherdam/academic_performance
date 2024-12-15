@@ -12,9 +12,9 @@ export default function Ranking() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
 
-  const fetchranking = async () => {
+  const fetchRanking = async (size: number = 5) => {
     try {
-      const response = await api.get(`/students/bests?size=5`);
+      const response = await api.get(`/students/bests?size=${size}`);
       setRanking(response.data);
     } catch {
       setError("Query error");
@@ -24,7 +24,7 @@ export default function Ranking() {
   };
 
   useEffect(() => {
-    fetchranking();
+    fetchRanking();
   }, []);
 
   if (loading) {
@@ -40,8 +40,57 @@ export default function Ranking() {
   }
 
   return (
-    <>
-      <div className="flex justify-center mt-3 overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="flex flex-col items-center mt-3">
+      <div className="w-1/2 block p-6 bg-white border border-gray-200 rounded-t-lg shadow  dark:bg-gray-800 dark:border-gray-700 ">
+        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Top Bests
+        </h5>
+        <p className="mb-5 font-normal text-gray-700 dark:text-gray-400">
+          Students closer to 100!
+        </p>
+        <span
+          onClick={() => {
+            fetchRanking(1);
+          }}
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+        >
+          1
+        </span>
+        <span
+          onClick={() => {
+            fetchRanking(5);
+          }}
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+        >
+          5
+        </span>
+        <span
+          onClick={() => {
+            fetchRanking(10);
+          }}
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+        >
+          10
+        </span>
+        <span
+          onClick={() => {
+            fetchRanking(20);
+          }}
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+        >
+          20
+        </span>
+        <span
+          onClick={() => {
+            fetchRanking(50);
+          }}
+          className="font-normal text-white mr-2 bg-[#80297d] rounded-full p-3"
+        >
+          50
+        </span>
+      </div>
+
+      <div className="w-full flex justify-center overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -85,6 +134,6 @@ export default function Ranking() {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
