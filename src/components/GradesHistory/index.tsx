@@ -24,21 +24,58 @@ export default function GradesHistory() {
   }, []);
 
   return (
-    <table>
-      <tr>
-        <td>Student ID</td>
-        <td>Student Name</td>
-        <td>Subject Name</td>
-        <td>Obtained</td>
-      </tr>
-      {gradesHistory.map((grade) => (
-        <tr key={grade.student_id}>
-          <td>{grade.student_id}</td>
-          <td>{grade.student_name}</td>
-          <td>{grade.subject_name}</td>
-          <td>{grade.obtained}</td>
-        </tr>
-      ))}
-    </table>
+    <div className="flex justify-center mt-3 overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Student ID
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Student Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Subject Name
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Obtained
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {gradesHistory.map((grade) => (
+            <tr
+              key={grade.student_id}
+              className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+            >
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {grade.student_id}
+              </th>
+              <td
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {grade.student_name}
+              </td>
+              <td
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {grade.subject_name}
+              </td>
+              <td
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                {grade.obtained}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
