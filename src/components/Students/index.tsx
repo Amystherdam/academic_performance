@@ -78,18 +78,21 @@ export default function Students() {
                       <span className="mt-2">Histórico de Notas</span>
                     </button>
 
-                    <a
-                      href="#"
+                    <button
+                      type="button"
+                      onClick={() =>
+                        navigate(`/students/${student.id}/final_grades`)
+                      }
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
-                      Notas por Disciplina
-                    </a>
+                      <span className="mt-2">Médias por Disciplina</span>
+                    </button>
 
                     <a
                       href="#"
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
-                      Nota Final
+                      Média Final
                     </a>
                   </div>
                 </td>
