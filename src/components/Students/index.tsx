@@ -59,9 +59,9 @@ export default function Students() {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
+            {students.map((student, index) => (
               <tr
-                key={student.id}
+                key={index}
                 className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
               >
                 <th
@@ -85,7 +85,7 @@ export default function Students() {
                       }
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
-                      <span className="mt-2">Histórico de Notas</span>
+                      <span className="mt-2">History Grades</span>
                     </button>
 
                     <button
@@ -95,7 +95,7 @@ export default function Students() {
                       }
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
-                      <span className="mt-2">Médias por Disciplina</span>
+                      <span className="mt-2">Average by Subjects</span>
                     </button>
                   </div>
                 </td>

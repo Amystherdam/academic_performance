@@ -2,7 +2,12 @@ import { render, waitFor } from "@testing-library/react";
 import Students from "@components/Students";
 import api from "@services/Api";
 
-// Mock do módulo de API
+const mockNavigate = jest.fn();
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useNavigate: () => mockNavigate,
+}));
+
 jest.mock("@services/Api", () => ({
   get: jest.fn(),
 }));

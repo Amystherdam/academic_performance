@@ -19,7 +19,7 @@ const config: Config = {
     ...buildAliases(),
   },
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['./setupTests.ts'],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
 };
 
 export default config;
