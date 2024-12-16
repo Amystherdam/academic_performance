@@ -18,6 +18,9 @@ const config: Config = {
   moduleNameMapper: {
     ...buildAliases(),
   },
+  testMatch: [
+    "<rootDir>/__tests__/**/*.test.tsx",  // Jest test directory
+  ],
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['./jest.setup.ts'],
 };
