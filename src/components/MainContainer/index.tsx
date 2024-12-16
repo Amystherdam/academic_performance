@@ -18,9 +18,9 @@ export default function MainContainer() {
       <NavBar paths={navBarlinks} />
 
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
-        <main className="flex flex-1 overflow-hidden">
+        <main className="flex flex-1 overflow-hidden" aria-label="main">
           <section
-            aria-labelledby="primary-heading"
+            aria-label="section"
             className="flex h-full min-w-0 flex-1 flex-col overflow-y-auto lg:order-last"
           >
             <Outlet />
