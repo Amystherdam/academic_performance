@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "@services/Api";
 import { useNavigate } from "react-router";
+import { AxiosError } from "axios";
 
 interface IStudent {
   id: number;
@@ -18,8 +19,10 @@ export default function Students() {
     try {
       const response = await api.get(`/students`);
       setStudents(response.data);
-    } catch {
-      setError("Query error");
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.errors[0].title || error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -35,9 +38,19 @@ export default function Students() {
 
   if (error) {
     return (
-      <>
-        <p className="text-red-700">{error}</p>
-      </>
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+      </div>
+    );
+  }
+
+  if (students.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl text-[#80297d] font-bold">
+          No students registered
+        </h1>
+      </div>
     );
   }
 
@@ -74,7 +87,9 @@ export default function Students() {
                   scope="row"
                   className="px-6 py-4 flex justify-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {student.obtained}
+                  {student.obtained
+                    ? student.obtained
+                    : "Overall average not calculated"}
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex justify-around">

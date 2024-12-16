@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import api from "@services/Api";
+import { AxiosError } from "axios";
 
 interface IGrade {
   student_id: number;
@@ -11,17 +12,49 @@ interface IGrade {
 
 export default function GradesHistory() {
   const [gradesHistory, setGradeHistory] = useState<IGrade[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   const { studentId } = useParams();
 
   const fetchGrades = async () => {
-    const response = await api.get(`/students/${studentId}/parcial_grades`);
+    try {
+      const response = await api.get(`/students/${studentId}/parcial_grades`);
 
-    setGradeHistory(response.data);
+      setGradeHistory(response.data);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.errors[0].title || error.message);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchGrades();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+      </div>
+    );
+  }
+
+  if (gradesHistory.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl text-[#80297d] font-bold">
+          No history registered for this student
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center mt-3 overflow-x-auto shadow-md sm:rounded-lg">
