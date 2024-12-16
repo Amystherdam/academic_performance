@@ -1,4 +1,5 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Ranking from "@components/Ranking";
 import api from "@services/Api";
 import { AxiosError, AxiosHeaders } from "axios";
@@ -7,9 +8,13 @@ jest.mock("@services/Api", () => ({
   get: jest.fn(),
 }));
 
+const user = userEvent.setup();
+
 describe("Ranking Component", () => {
-  it("renders loading state initially", () => {
-    render(<Ranking />);
+  it("renders loading state initially", async () => {
+    await waitFor(() => {
+      render(<Ranking />);
+    });
     expect(screen.getByText(/Loading.../i)).toBeInTheDocument();
   });
 
@@ -29,7 +34,9 @@ describe("Ranking Component", () => {
     });
     (api.get as jest.Mock).mockRejectedValueOnce(error);
 
-    render(<Ranking />);
+    await waitFor(async () => {
+      render(<Ranking />);
+    });
 
     await waitFor(() => {
       expect(screen.getByText(/API Error/i)).toBeInTheDocument();
@@ -39,7 +46,9 @@ describe("Ranking Component", () => {
   it("renders message when ranking is empty", async () => {
     (api.get as jest.Mock).mockResolvedValueOnce({ data: [] });
 
-    render(<Ranking />);
+    await waitFor(() => {
+      render(<Ranking />);
+    });
 
     await waitFor(() => {
       expect(
@@ -56,7 +65,9 @@ describe("Ranking Component", () => {
 
     (api.get as jest.Mock).mockResolvedValueOnce({ data: mockData });
 
-    render(<Ranking />);
+    await waitFor(() => {
+      render(<Ranking />);
+    });
 
     await waitFor(() => {
       expect(screen.getByText(/Top Bests/i)).toBeInTheDocument();
@@ -71,7 +82,10 @@ describe("Ranking Component", () => {
     ];
 
     (api.get as jest.Mock).mockResolvedValueOnce({ data: mockData });
-    render(<Ranking />);
+
+    await waitFor(() => {
+      render(<Ranking />);
+    });
 
     await waitFor(() => {
       expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
@@ -80,10 +94,14 @@ describe("Ranking Component", () => {
     const mockNewData = [
       { student_id: 2, student_name: "Jane Smith", obtained: 90 },
     ];
+
     (api.get as jest.Mock).mockResolvedValueOnce({ data: mockNewData });
 
     const button = screen.getByText("10");
-    fireEvent.click(button);
+
+    await waitFor(async () => {
+      await user.click(button);
+    });
 
     await waitFor(() => {
       expect(screen.getByText(/Jane Smith/i)).toBeInTheDocument();

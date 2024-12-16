@@ -1,13 +1,14 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import NavBar from "@components/NavBar";
 import { useNavigate } from "react-router";
 
-// Mock do useNavigate
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),
   useNavigate: jest.fn(),
 }));
+
+const user = userEvent.setup();
 
 describe("NavBar Component", () => {
   const mockNavigate = jest.fn();
@@ -31,7 +32,7 @@ describe("NavBar Component", () => {
     });
   });
 
-  it("should navigate to the correct path on button click", () => {
+  it("should navigate to the correct path on button click", async () => {
     const paths = [
       { label: "Home", path: "/home" },
       { label: "About", path: "/about" },
@@ -39,15 +40,19 @@ describe("NavBar Component", () => {
 
     render(<NavBar paths={paths} />);
 
-    // Simular clique no botão "Home"
     const homeButton = screen.getByRole("button", { name: /home/i });
-    fireEvent.click(homeButton);
+
+    await waitFor(async () => {
+      await user.click(homeButton);
+    });
 
     expect(mockNavigate).toHaveBeenCalledWith("/home");
 
-    // Simular clique no botão "About"
     const aboutButton = screen.getByRole("button", { name: /about/i });
-    fireEvent.click(aboutButton);
+
+    await waitFor(async () => {
+      await user.click(aboutButton);
+    });
 
     expect(mockNavigate).toHaveBeenCalledWith("/about");
   });
