@@ -39,70 +39,70 @@ export default function AverageByStudentSubjects() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <>
       {error ? (
-        <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+          <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+        </div>
       ) : averageBySubjects.length === 0 ? (
         <h1 className="text-4xl text-[#80297d] font-bold">
           Average by subjects are not calculated
         </h1>
       ) : (
         <div className="flex justify-center mt-3 overflow-x-auto shadow-md sm:rounded-lg">
-          <div className="flex justify-center mt-3 overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Student ID
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Student Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Subject Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Obtained
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {averageBySubjects.map((averageBySubject, index) => (
-                  <tr
-                    key={index}
-                    className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+          <table className="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Student ID
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Student Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Subject Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Obtained
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {averageBySubjects.map((averageBySubject, index) => (
+                <tr
+                  key={index}
+                  className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {averageBySubject.student_id}
-                    </th>
-                    <td
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {averageBySubject.student_name}
-                    </td>
-                    <td
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {averageBySubject.subject_name}
-                    </td>
-                    <td
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {averageBySubject.obtained}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                    {averageBySubject.student_id}
+                  </th>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {averageBySubject.student_name}
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {averageBySubject.subject_name}
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {averageBySubject.obtained}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
-    </div>
+    </>
   );
 }

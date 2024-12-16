@@ -33,9 +33,11 @@ export default function Ranking() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <>
       {error ? (
-        <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+          <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+        </div>
       ) : ranking.length === 0 ? (
         <h1 className="text-4xl text-[#80297d] font-bold">
           Overall average not calculated
@@ -137,6 +139,6 @@ export default function Ranking() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
