@@ -43,7 +43,6 @@ describe("Students Component", () => {
   });
 
   it("handles API errors", async () => {
-    // Criando um erro Axios com a configuração correta
     const request = { path: "/foo" };
     const headers = new AxiosHeaders();
     const config = {
@@ -58,15 +57,12 @@ describe("Students Component", () => {
       headers,
     });
 
-    // Mockando o erro da API corretamente
     (api.get as jest.Mock).mockRejectedValueOnce(error);
 
     const { findByText, getByText } = render(<Students />);
 
-    // Verifica se a mensagem de "loading" está presente
     expect(getByText(/loading/i)).toBeInTheDocument();
 
-    // Verifica se a mensagem de erro "API Error" é exibida corretamente
     expect(await findByText(/API Error/i)).toBeInTheDocument();
   });
 });

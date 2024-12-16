@@ -1,24 +1,26 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import GradesHistory from "@components/GradesHistory"; // ajuste conforme o caminho real do seu componente
+import GradesHistory from "@components/GradesHistory";
 import { useParams } from "react-router";
-import api from "@services/Api"; // ajuste conforme o caminho real
+import api from "@services/Api";
 import { AxiosError, AxiosHeaders } from "axios";
 
-// Mocking useParams
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),
   useParams: jest.fn(),
 }));
 
-// Mocking the API call
 jest.mock("@services/Api", () => ({
   get: jest.fn(),
 }));
 
 describe("GradesHistory", () => {
-  it("should display loading state initially", () => {
+  it("should display loading state initially", async () => {
     (useParams as jest.Mock).mockReturnValue({ studentId: "123" });
-    render(<GradesHistory />);
+
+    await waitFor(() => {
+      render(<GradesHistory />);
+    });
+
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
@@ -29,7 +31,9 @@ describe("GradesHistory", () => {
       new AxiosError("Network Error")
     );
 
-    render(<GradesHistory />);
+    await waitFor(() => {
+      render(<GradesHistory />);
+    });
 
     await waitFor(() => {
       expect(screen.getByText("Network Error")).toBeInTheDocument();
@@ -40,7 +44,9 @@ describe("GradesHistory", () => {
     (useParams as jest.Mock).mockReturnValue({ studentId: "123" });
     (api.get as jest.Mock).mockResolvedValueOnce({ data: [] });
 
-    render(<GradesHistory />);
+    await waitFor(() => {
+      render(<GradesHistory />);
+    });
 
     await waitFor(() => {
       expect(
@@ -49,7 +55,7 @@ describe("GradesHistory", () => {
     });
   });
 
-  it("should display the grades table when data is fetched successfully", () => {
+  it("should display the grades table when data is fetched successfully", async () => {
     (useParams as jest.Mock).mockReturnValue({ studentId: "123" });
     (api.get as jest.Mock).mockResolvedValueOnce({
       data: [
@@ -61,10 +67,11 @@ describe("GradesHistory", () => {
         },
       ],
     });
+    await waitFor(() => {
+      render(<GradesHistory />);
+    });
 
-    render(<GradesHistory />);
-
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText("John Doe")).toBeInTheDocument();
       expect(screen.getByText("Math")).toBeInTheDocument();
       expect(screen.getByText("85")).toBeInTheDocument();
