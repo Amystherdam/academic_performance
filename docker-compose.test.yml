@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  react:
+  jest:
     build: .
-    container_name: react_test
+    container_name: jest
     volumes:
       - .:/academic_performance
       - /academic_performance/node_modules
