@@ -48,6 +48,6 @@ describe("Students Component", () => {
 
     expect(getByText(/loading/i)).toBeInTheDocument();
 
-    expect(await findByText(/Query error/i)).toBeInTheDocument();
+    expect(await findByText(/No students registered/i)).toBeInTheDocument();
   });
 });

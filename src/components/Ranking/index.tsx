@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "@services/Api";
+import { AxiosError } from "axios";
 
 interface IRanking {
   student_id: number;
@@ -16,8 +17,10 @@ export default function Ranking() {
     try {
       const response = await api.get(`/students/bests?size=${size}`);
       setRanking(response.data);
-    } catch {
-      setError("Query error");
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        setError(error.response?.data.errors[0].title || error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -33,9 +36,19 @@ export default function Ranking() {
 
   if (error) {
     return (
-      <>
-        <p className="text-red-700">{error}</p>
-      </>
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
+      </div>
+    );
+  }
+
+  if (ranking.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl text-[#80297d] font-bold">
+          Overall average not calculated
+        </h1>
+      </div>
     );
   }
 
