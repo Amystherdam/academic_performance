@@ -39,9 +39,11 @@ export default function Ranking() {
           <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
         </div>
       ) : ranking.length === 0 ? (
-        <h1 className="text-4xl text-[#80297d] font-bold">
-          Overall average not calculated
-        </h1>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+          <h1 className="text-4xl text-[#80297d] font-bold">
+            Overall average not calculated
+          </h1>
+        </div>
       ) : (
         <div className="flex flex-col items-center mt-3">
           <div className="w-1/2 block p-6 bg-white border border-gray-200 rounded-t-lg shadow  dark:bg-gray-800 dark:border-gray-700 ">

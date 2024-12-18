@@ -45,9 +45,11 @@ export default function AverageByStudentSubjects() {
           <h1 className="text-4xl text-[#80297d] font-bold">{error}</h1>
         </div>
       ) : averageBySubjects.length === 0 ? (
-        <h1 className="text-4xl text-[#80297d] font-bold">
-          Average by subjects are not calculated
-        </h1>
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+          <h1 className="text-4xl text-[#80297d] font-bold">
+            Average by subjects are not calculated
+          </h1>
+        </div>
       ) : (
         <div className="flex justify-center mt-3 overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-1/2 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
