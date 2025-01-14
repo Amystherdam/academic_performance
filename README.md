@@ -33,7 +33,7 @@ A visão é basicamente a que está abaixo
 
 ### Componentes / Páginas
 
-Existem 6 tabelas no projeto
+Componentes no projeto
 
 - `AverageByStudentSubjects`
 - `GradesHistory`
